@@ -1,0 +1,17 @@
+# Import Tweepy library
+import tweepy
+# Define your API keys and tokens
+consumer_key = "your_consumer_key"
+consumer_secret = "your_consumer_secret"
+access_token = "your_access_token"
+access_token_secret = "your_access_token_secret"
+# Authenticate with Twitter API
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+# Get the list of follow requests
+requests = api.incoming_friendships()
+# Loop through the requests and accept them
+for request in requests:
+    api.create_friendship(request)
+    print(f"Accepted follow request from {request}")
